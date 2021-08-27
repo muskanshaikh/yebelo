@@ -1,0 +1,56 @@
+<div class="container">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="website">Sort By:Category</label>
+      <select
+        formControlName="website"
+        class="form-control"
+        (change)="modo($event.target.value)"
+        placeholder="select category"
+      >
+      <option value="">Select your option</option>
+      <option value="Premium">Premium</option>
+        <option value="Tamilnadu">TamilNadu</option>
+      </select>
+    </div>
+  </form>
+
+  <div class="row">
+    <div *ngFor="let item of daata" class="card col-md-3">
+      <img src="{{ item.p_image }}" alt="" />
+      <h5
+        style="
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100ch;
+        "
+      >
+        {{ item.p_name }}
+      </h5>
+      <p
+        style="
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100ch;
+        "
+      >
+        {{ item.p_details }}
+      </p>
+      <div class="d-flex justify-content-between">
+        <p><strong>Price:</strong> ${{ item.p_cost }}</p>
+        <button type="button" class="btn btn-primary btn-circle btn-sm" (click)= "addToCart(item)">
+          <i class="fa fa-plus"></i>
+        </button>
+        <span>{{ item.p_qnt }}</span>
+        <button type="button" class="btn btn-primary btn-circle btn-sm"  (click)="removeFromCart(item)">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <button class="btn btn-primary" (click)="submit(item.p_id)">
+        Add to cart
+      </button>
+    </div>
+  </div>
+</div>
